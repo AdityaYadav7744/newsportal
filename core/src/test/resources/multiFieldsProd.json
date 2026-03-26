@@ -1,0 +1,23 @@
+{
+  "productWithFutureExpiry": {
+    "prodTitle": "Laptop",
+    "productExpiryDate": "2099-12-31T00:00:00.000Z",
+    "prodPrice": "$1200",
+    "prodImg": "/content/dam/laptop.jpg",
+    "prodColor": "Silver"
+  },
+  "productWithPastExpiry": {
+    "prodTitle": "Old Laptop",
+    "productExpiryDate": "2000-01-01T00:00:00.000Z",
+    "prodPrice": "$300",
+    "prodImg": "/content/dam/old-laptop.jpg",
+    "prodColor": "Black"
+  },
+  "productWithNullExpiry": {
+    "prodTitle": "Mystery Laptop",
+    "productExpiryDate": null,
+    "prodPrice": "$999",
+    "prodImg": "/content/dam/mystery-laptop.jpg",
+    "prodColor": "White"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "testResource": {
+    "sling:resourceType": "bhaska/components/content/test"
+  },
+  "noResourceType": {
+  }
+}

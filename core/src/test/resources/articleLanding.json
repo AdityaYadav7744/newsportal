@@ -1,0 +1,40 @@
+{
+  "landingNullPath": {
+  },
+  "landingNoResolver": {
+    "rootPath": "/content/articles",
+    "maxArticles": 5
+  },
+  "landingInvalidRoot": {
+    "rootPath": "/content/invalid",
+    "maxArticles": 5
+  },
+  "landingArticles": {
+    "rootPath": "/content/articles",
+    "maxArticles": 5
+  },
+  "landingArticlesMax": {
+    "rootPath": "/content/articles",
+    "maxArticles": 2
+  },
+  "articles": {
+    "article1": {
+      "articleTitle": "Breaking News 1",
+      "articelDesc": "Desc 1",
+      "articleImage": "/content/dam/news/article1.jpg",
+      "articelDate": "2026-03-18"
+    },
+    "article2": {
+      "articleTitle": "Breaking News 2",
+      "articelDesc": "Desc 2",
+      "articleImage": "/content/dam/news/article2.jpg",
+      "articelDate": "2026-03-18"
+    },
+    "article3": {
+      "articleTitle": "Breaking News 3",
+      "articelDesc": "Desc 3",
+      "articleImage": "/content/dam/news/article3.jpg",
+      "articelDate": "2026-03-18"
+    }
+  }
+}

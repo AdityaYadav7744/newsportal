@@ -1,0 +1,1 @@
+let articleType="Sport";

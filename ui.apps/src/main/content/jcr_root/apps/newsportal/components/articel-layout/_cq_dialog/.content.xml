@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Product Component Details"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <layoutType
+                granite:class="cq-dialog-dropdown-showhide"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+                fieldLabel="Layout Type"
+                name="./layoutType">
+                <items jcr:primaryType="nt:unstructured">
+                    <grid
+                        jcr:primaryType="nt:unstructured"
+                        text="Grid"
+                        value="Grid">
+                        <tabs
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                            <items jcr:primaryType="nt:unstructured">
+                                <tabs
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                                    <select
+                                        granite:class="cq-dialog-showhide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"/>
+                                </tabs>
+                            </items>
+                        </tabs>
+                    </grid>
+                    <carousel
+                        jcr:primaryType="nt:unstructured"
+                        text="Carousel"
+                        value="Carousel">
+                        <items jcr:primaryType="nt:unstructured">
+                            <productcard
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Product Title">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <content
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <accordion
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/accordion">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <products
+                                                            jcr:primaryType="nt:unstructured"
+                                                            jcr:title="products"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                            maximized="true">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <producttitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                                                    fieldLabel="Product Expiry"/>
+                                                                <productprice
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                    fieldLabel="Product Price"/>
+                                                                <productimage
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="Product Image"/>
+                                                                <productcolor
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                                    fieldLabel="Product Color"/>
+                                                            </items>
+                                                        </products>
+                                                    </items>
+                                                </accordion>
+                                            </items>
+                                        </content>
+                                    </items>
+                                </field>
+                            </productcard>
+                        </items>
+                    </carousel>
+                </items>
+            </layoutType>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,10 @@
+{
+  "productCardResource": {
+    "jcr:primaryType": "nt:unstructured",
+    "productTitle": "Smartphone",
+    "productPrice": "15000",
+    "productColor": "Black",
+    "productImage": "/content/dam/images/smartphone.jpg",
+    "productExpiry": "2026-12-31"
+  }
+}

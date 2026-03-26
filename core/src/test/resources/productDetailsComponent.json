@@ -1,0 +1,31 @@
+{
+  "productDetails": {
+    "articleWithProducts": {
+      "title": "Summer Collection",
+      "description": "Latest products",
+      "status": "active",
+      "category": "clothing",
+      "loadFromCF": true,
+      "products": {
+        "product1": {
+          "productTitle": "Shirt",
+          "productPrice": "1200",
+          "productColor": "Blue",
+          "productImage": "/content/dam/images/shirt.jpg",
+          "productExpiry": "2026-08-31"
+        },
+        "product2": {
+          "productTitle": "Shoes",
+          "productPrice": "2000",
+          "productColor": "Black",
+          "productImage": "/content/dam/images/shoes.jpg",
+          "productExpiry": "2026-09-30"
+        }
+      }
+    },
+    "articleNoProducts": {
+      "title": "Empty Collection",
+      "loadFromCF": false
+    }
+  }
+}

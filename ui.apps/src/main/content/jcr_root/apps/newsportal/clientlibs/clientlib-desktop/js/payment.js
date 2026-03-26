@@ -1,0 +1,1 @@
+let paymentMethods=["vis","master"];

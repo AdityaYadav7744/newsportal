@@ -1,0 +1,22 @@
+{
+  "futureProduct": {
+    "prodTitle": "Laptop",
+    "productExpiryDate": 4102444800000,
+    "prodPrice": "50000",
+    "prodImg": "/content/dam/laptop.png",
+    "prodColor": "Black"
+  },
+  "pastProduct": {
+    "prodTitle": "Old Laptop",
+    "productExpiryDate": 946684800000,
+    "prodPrice": "10000",
+    "prodImg": "/content/dam/old.png",
+    "prodColor": "Gray"
+  },
+  "nullDateProduct": {
+    "prodTitle": "No Date",
+    "prodPrice": "20000",
+    "prodImg": "/content/dam/null.png",
+    "prodColor": "White"
+  }
+}

@@ -1,0 +1,87 @@
+<sly data-sly-use.model="com.bhaska.newsportal.core.models.ProductDetailsInterface"/>
+
+
+
+<div class="product-details-component">
+
+    <!-- Header Section -->
+    <div class="product-header">
+
+        <h2>${model.title}</h2>
+
+        <div>${model.description @ context='html'}</div>
+
+        <p>Category: ${model.category}</p>
+
+    </div>
+
+
+    <!-- Status Condition -->
+    <sly data-sly-test="${model.status}">
+
+        <div class="products-wrapper">
+
+            <!-- If Load From Content Fragment -->
+            <sly data-sly-test="${model.loadFromCF}">
+
+                <h3>Products From Content Fragments</h3>
+
+                <sly data-sly-list.product="${model.products}">
+
+                    <div class="product-card">
+
+                        <h4>${product.productTitle}</h4>
+
+                        <p>Price: ${product.productPrice}</p>
+
+                        <p>Expiry Date: ${product.productExpiry}</p>
+
+                        <p>Color: ${product.productColor}</p>
+
+                        <p>Tag: ${product.productTag}</p>
+
+                        <img src="${product.productImage}" 
+                             alt="${product.productTitle}" 
+                             width="200"/>
+
+                    </div>
+
+                </sly>
+
+            </sly>
+
+
+            <!-- If Load From Component Multifield -->
+            <sly data-sly-test="${!model.loadFromCF}">
+
+                <h3>Products From Component</h3>
+
+                <sly data-sly-list.product="${model.products}">
+
+                    <div class="product-card">
+
+                        <h4>${product.productTitle}</h4>
+
+                        <p>Price: ${product.productPrice}</p>
+
+                        <p>Expiry Date: ${product.productExpiry}</p>
+
+                        <p>Color: ${product.productColor}</p>
+
+                        <p>Tag: ${product.productTag}</p>
+
+                        <img src="${product.productImage}" 
+                             alt="${product.productTitle}" 
+                             width="200"/>
+
+                    </div>
+
+                </sly>
+
+            </sly>
+
+        </div>
+
+    </sly>
+
+</div>

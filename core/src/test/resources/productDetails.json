@@ -1,0 +1,24 @@
+{
+  "productDetailsComponent": {
+    "title": "Smartphone",
+    "description": "Latest 5G smartphone",
+    "prodStatus": true,
+    "category": "Electronics",
+    "productCard": {
+      "card1": {
+        "cardTitle": "Battery Info",
+        "cardDesc": "4000mAh battery"
+      },
+      "card2": {
+        "cardTitle": "Camera Info",
+        "cardDesc": "108MP rear camera"
+      }
+    }
+  },
+  "productDetailsComponentEmpty": {
+    "title": null,
+    "description": null,
+    "prodStatus": null,
+    "category": null
+  }
+}

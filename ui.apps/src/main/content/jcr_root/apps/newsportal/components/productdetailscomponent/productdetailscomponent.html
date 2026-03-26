@@ -1,0 +1,36 @@
+<h1>Product Details Component</h1>
+
+<sly data-sly-use.generalDetails="com.bhaska.newsportal.core.models.ProductDetailsComponentImpl" />
+ 
+ 
+<sly data-sly-test="${generalDetails.prodStatus}">
+
+    <div class="product-details">
+        <h2>${generalDetails.title}</h2>
+        <p>${generalDetails.description @ context='html'}</p>
+        <p>Category: ${generalDetails.category}</p>
+    </div>
+
+    <h2>Product List</h2>
+
+    <!-- If valid products exist -->
+    <sly data-sly-test="${generalDetails.productCard}">
+        <ul data-sly-list.item="${generalDetails.productCard}">
+         <sly data-sly-test="${item.productExpired}">
+            <li>
+                <img src="${item.prodImg}" alt="${item.prodTitle}" />
+                <h3>${item.prodTitle}</h3>
+                <p>Price: ${item.prodPrice}</p>
+                <p>Color: ${item.prodColor}</p>
+                <p>Expiry Date: ${item.prodExpiryDate}</p>
+            </li>
+            </sly>
+        </ul>
+    </sly>
+
+    <!-- Fallback Message -->
+    <sly data-sly-test="${!generalDetails.validProducts || generalDetails.validProducts.size == 0}">
+        <p>No active products available.</p>
+    </sly>
+
+</sly>

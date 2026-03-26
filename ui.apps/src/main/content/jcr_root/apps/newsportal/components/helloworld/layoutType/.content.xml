@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/from/radiogroup"
+    fieldLabel="LayoutType"
+    name="./layoutType">
+    <items jcr:primaryType="nt:unstructured">
+        <grid
+            jcr:primaryType="nt:unstructured"
+            text="Grid"
+            value="Grid"/>
+        <Copy_x0020_of_x0020_grid
+            jcr:primaryType="nt:unstructured"
+            text="Grid"
+            value="Grid"/>
+    </items>
+</jcr:root>

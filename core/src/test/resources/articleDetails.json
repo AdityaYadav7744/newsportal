@@ -1,0 +1,14 @@
+{
+  "article1": {
+    "articleTitle": "Breaking News",
+    "articelDesc": "This is a breaking news article",
+    "articleImage": "/content/dam/news/article1.jpg",
+    "articelDate": "2026-03-18"
+  },
+  "articleEmpty": {
+    "articleTitle": "",
+    "articelDesc": "",
+    "articleImage": "",
+    "articelDate": ""
+  }
+}

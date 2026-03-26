@@ -1,0 +1,22 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+<sly data-sly-call="${clientlib.css @ categories='news-clientlib'}"/>
+<sly data-sly-call="${clientlib.js @ categories='news-clientlib'}"/>
+
+<div class="news-wrapper">
+
+    <h2>${properties.sectionTitle}</h2>
+
+    <sly data-sly-test="${properties.enableSearchFilter}">
+        <input type="text" id="search-input" placeholder="Search by title..." />
+    </sly>
+
+    <div id="loading-spinner">Loading...</div>
+
+    <div id="news-container"
+         data-api="${properties.apiUrl}"
+         data-limit="${properties.numberOfNews}"
+         data-search="${properties.enableSearchFilter}">
+    </div>
+
+</div>
+
