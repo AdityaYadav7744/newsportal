@@ -1,5 +1,4 @@
-package com.bhaska.newsportal.core.models.impl;
-
+package com.bhaska.newsportal.core.models;
 
 public class ManualCards {
     private String cardTitle;
@@ -8,7 +7,6 @@ public class ManualCards {
     private String fullDescription;
     private String ctaText;
     private String ctaLink;
-
     public String getCardTitle() {
         return cardTitle;
     }
@@ -40,5 +38,16 @@ public class ManualCards {
 
     public String getCtaLink() {
         return ctaLink;
+    }
+    @Override
+    public String toString() {
+        return "ManualCards{" +
+                "cardTitle='" + cardTitle + '\'' +
+                ", cardImage='" + cardImage + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", fullDescription='" + fullDescription + '\'' +
+                ", ctaText='" + ctaText + '\'' +
+                ", ctaLink='" + ctaLink + '\'' +
+                '}';
     }
 }

@@ -21,7 +21,6 @@ import java.util.Map;
 )
 
 @Designate(ocd = ProductSchedulerConfig.class)
-
 public class ProductScheduler implements Runnable {
 
     private static final Logger log = LoggerFactory.getLogger(ProductScheduler.class);

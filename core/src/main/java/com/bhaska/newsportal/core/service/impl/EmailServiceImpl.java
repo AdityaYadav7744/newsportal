@@ -1,4 +1,4 @@
-package com.bhaska.newsportal.core.service;
+package com.bhaska.newsportal.core.service.impl;
 import com.bhaska.newsportal.core.service.EmailService;
 import com.day.cq.mailer.MessageGateway;
 import com.day.cq.mailer.MessageGatewayService;

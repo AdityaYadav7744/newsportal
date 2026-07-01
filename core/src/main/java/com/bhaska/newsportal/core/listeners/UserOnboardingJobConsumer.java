@@ -1,7 +1,7 @@
 package com.bhaska.newsportal.core.listeners;
 
 import com.bhaska.newsportal.core.service.EmailService;
-import com.bhaska.newsportal.core.service.NPUtilService;
+import com.bhaska.newsportal.core.service.impl.NPUtilService;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.event.jobs.Job;
@@ -24,37 +24,25 @@ import java.net.URL;
 public class UserOnboardingJobConsumer implements JobConsumer {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserOnboardingJobConsumer.class);
-
     @Reference
     private EmailService emailService;
-
     @Reference
     private NPUtilService npUtilService;
-
     @Override
     public JobResult process(Job job) {
-
-        String userPath = (String) job.getProperty("userPath");
-
+        String userPath = job.getProperty("userPath",String.class);
         LOG.info("Started onboarding job for user: {}", userPath);
-
-
         if (userPath == null || userPath.contains("/profile")) {
             LOG.warn("Skipping invalid user path: {}", userPath);
-            return JobResult.CANCEL; // ✅ NO retry
+            return JobResult.CANCEL;
         }
 
         try (ResourceResolver resolver = npUtilService.getResourceResolver()) {
-
-
             Resource userResource = resolver.getResource(userPath);
-
             if (userResource == null) {
                 LOG.error("User resource not found at {}", userPath);
                 return JobResult.CANCEL;
             }
-
-            //  Fetch profile node
             Resource profile = userResource.getChild("profile");
 
             if (profile == null) {
@@ -62,17 +50,10 @@ public class UserOnboardingJobConsumer implements JobConsumer {
                 return JobResult.CANCEL;
             }
 
-            // 🔹 Fetch user details
-            String email = profile.getValueMap().get("email", String.class);
+           String email = profile.getValueMap().get("email", String.class);
             String name = profile.getValueMap().get("givenName", String.class);
-
-
             LOG.info("User details fetched → Email: {}, Name: {}", email, name);
-
-
             emailService.sendWelcomeEmail(email, name);
-
-
             callCRM(email, name);
 
             LOG.info("User onboarding completed successfully for {}", email);
@@ -81,8 +62,6 @@ public class UserOnboardingJobConsumer implements JobConsumer {
 
         } catch (Exception e) {
             LOG.error("Error occurred during onboarding job", e);
-
-            // 🔁 Retry ONLY for real failures (like email/CRM failure)
             return JobResult.FAILED;
         }
     }
@@ -115,13 +94,10 @@ public class UserOnboardingJobConsumer implements JobConsumer {
                 LOG.error("CRM API failed with response code {}", responseCode);
                 throw new RuntimeException("CRM API failed");
             }
-
             LOG.info("CRM sync successful for {}", email);
 
         } catch (Exception e) {
             LOG.error("CRM API error", e);
-
-
             throw new RuntimeException("CRM failed", e);
         }
     }

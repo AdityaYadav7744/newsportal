@@ -1,0 +1,27 @@
+<sly data-sly-use.model="com.bhaska.newsportal.core.models.DealCardModel" />
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" />
+<sly data-sly-call="${clientlib.css @ categories='faq.clientlib'}" />
+
+<div class="deal-card">
+    <div class="deal-card__image" data-sly-test="${model.cardImageReference}">
+        <img src="${model.cardImageReference}"
+             alt="${model.cardTitle}" />
+    </div>
+    <div class="deal-card__content">
+        <h3 class="deal-card__title" data-sly-test="${model.cardTitle}">
+            ${model.cardTitle}
+        </h3>
+
+        <p class="deal-card__description" data-sly-test="${model.cardDescription}">
+            ${model.cardDescription}
+        </p>
+
+        <a class="deal-card__button"
+           data-sly-test="${model.selectedDeal}"
+           href="${model.selectedDeal}.html">
+            View Deal
+        </a>
+
+    </div>
+
+</div>

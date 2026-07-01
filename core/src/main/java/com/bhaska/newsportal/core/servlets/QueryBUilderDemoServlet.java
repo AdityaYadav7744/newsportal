@@ -11,7 +11,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -29,14 +28,13 @@ import java.util.Map;
                 "sling.servlet.paths=/bin/sitemap/servlet"
         }
 )
-public class SiteMapDemoServlet extends SlingAllMethodsServlet {
+public class QueryBUilderDemoServlet extends SlingAllMethodsServlet {
 
     @Reference
     private QueryBuilder queryBuilder;
 
     @Override
     protected void doGet( SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-
          ResourceResolver resolverResolver = request.getResourceResolver();
          Session session = resolverResolver.adaptTo(Session.class);
          Map<String, String> map=new HashMap<>();
@@ -55,5 +53,6 @@ public class SiteMapDemoServlet extends SlingAllMethodsServlet {
                  throw new RuntimeException(e);
              }
          }
+
     }
 }

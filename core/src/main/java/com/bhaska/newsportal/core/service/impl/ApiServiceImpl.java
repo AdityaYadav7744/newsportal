@@ -1,5 +1,7 @@
-package com.bhaska.newsportal.core.service;
+package com.bhaska.newsportal.core.service.impl;
 
+import com.bhaska.newsportal.core.config.ApiConfig;
+import com.bhaska.newsportal.core.service.ApiService;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;

@@ -1,76 +1,74 @@
 package com.bhaska.newsportal.core.models;
 
-import org.junit.jupiter.api.Test;
-import java.lang.reflect.Field;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.apache.sling.api.resource.Resource;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(AemContextExtension.class)
 class ProductItemDetailsTest {
 
-    // Utility to set private field
-    private void setField(Object obj, String fieldName, Object value) throws Exception {
-        Field field = obj.getClass().getDeclaredField(fieldName);
-        field.setAccessible(true);
-        field.set(obj, value);
+    private final AemContext context = new AemContext();
+
+    @BeforeEach
+    void setUp() {
+        context.addModelsForClasses(ProductItemDetails.class);
+        context.load().json("/productitemdetails.json", "/content");
     }
 
-    // =========================
-    // ✅ CASE 1: NULL (skip if)
-    // =========================
     @Test
-    void testInit_NullExpiry() throws Exception {
+    void testFutureExpiryProduct() {
 
-        ProductItemDetails model = new ProductItemDetails();
+        Resource resource = context.resourceResolver()
+                .getResource("/content/product");
 
-        setField(model, "productExpiry", null);
+        ProductItemDetails model = resource.adaptTo(ProductItemDetails.class);
+        assertNotNull(model);
+        assertEquals("Samsung Galaxy S25", model.getProductTitle());
+        assertEquals("2099-12-31", model.getProductExpiry());
+        assertEquals(85000, model.getProductprice());
+        assertEquals("/content/dam/newsportal/mobile.jpg", model.getProductImage());
+        assertEquals("Black", model.getProductColor());
+        assertEquals("Premium", model.getProductTag());
+        assertFalse(model.isExpired());
+    }
 
-        model.init();
+    @Test
+    void testExpiredProduct() {
+
+        Resource resource = context.resourceResolver()
+                .getResource("/content/expiredProduct");
+
+        ProductItemDetails model = resource.adaptTo(ProductItemDetails.class);
+
+        assertTrue(model.isExpired());
+    }
+
+    @Test
+    void testInvalidDate() {
+
+        Resource resource = context.resourceResolver()
+                .getResource("/content/invalidDate");
+
+        ProductItemDetails model = resource.adaptTo(ProductItemDetails.class);
 
         assertFalse(model.isExpired());
     }
 
-    // =========================
-    // ✅ CASE 2: PAST DATE
-    // =========================
     @Test
-    void testInit_PastDate() throws Exception {
+    void testNoExpiryDate() {
 
-        ProductItemDetails model = new ProductItemDetails();
+        Resource resource = context.resourceResolver()
+                .getResource("/content/noExpiry");
 
-        setField(model, "productExpiry", "2000-01-01");
+        ProductItemDetails model = resource.adaptTo(ProductItemDetails.class);
 
-        model.init();
+        assertNull(model.getProductExpiry());
 
-        assertTrue(model.isExpired()); // expired
-    }
-
-    // =========================
-    // ✅ CASE 3: FUTURE DATE
-    // =========================
-    @Test
-    void testInit_FutureDate() throws Exception {
-
-        ProductItemDetails model = new ProductItemDetails();
-
-        setField(model, "productExpiry", "2099-12-31");
-
-        model.init();
-
-        assertFalse(model.isExpired()); // not expired
-    }
-
-    // =========================
-    // ✅ CASE 4: INVALID FORMAT (catch block)
-    // =========================
-    @Test
-    void testInit_InvalidDate() throws Exception {
-
-        ProductItemDetails model = new ProductItemDetails();
-
-        setField(model, "productExpiry", "wrong-date");
-
-        model.init();
-
-        assertFalse(model.isExpired()); // from catch block
+        assertFalse(model.isExpired());
     }
 }

@@ -9,8 +9,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
-
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -25,10 +23,11 @@ import java.util.Set;
                 "sling.servlet.methods=POST"
         }
 )
-public class MigrationServlet extends SlingAllMethodsServlet {
+public class CustomMigrationServlet extends SlingAllMethodsServlet {
 
     @Reference
-    private BlogMigrationService blogMigrationService;
+    private BlogMigrationService service;
+
 
     @Override
     protected void doPost(SlingHttpServletRequest request,  SlingHttpServletResponse response) throws ServletException, IOException {
@@ -42,10 +41,9 @@ public class MigrationServlet extends SlingAllMethodsServlet {
             }
             String fileName = file.getFileName();
             response.getWriter().write("File get successfully");
-
        try(InputStream inputStream = file.getInputStream()){
             Set<String> urls = getUrls(inputStream);
-            blogMigrationService.blogMigrationSerive(urls);
+            service.blogMigrationSerive(urls);
             response.getWriter().write(urls.toString());
        }
        catch (Exception e){

@@ -1,0 +1,190 @@
+.faq-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    padding: 20px 0;
+}
+
+.faq-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+}
+
+.faq-card:hover {
+    transform: translateY(-5px);
+}
+
+.faq-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.faq-card h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 16px 0;
+    padding: 0 15px;
+    color: #222;
+}
+
+.faq-card p {
+    padding: 0 15px;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.faq-btn {
+    display: inline-block;
+    margin: 15px 0 20px;
+    padding: 10px 22px;
+    background-color: #0073e6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.faq-btn:hover {
+    background-color: #005bb5;
+}
+
+
+
+.faq-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+}
+
+.faq-popup.active {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 25px;
+}
+.faq-popup-content {
+    background: #ffffff;
+    width: 320px;
+    min-height: 180px;
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+.faq-popup-content h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    color: #222;
+}
+
+.faq-popup-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+
+.faq-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    color: #666;
+}
+
+.faq-close-btn:hover {
+    color: #000;
+}
+
+.faq-popup-content {
+    background: #ffffff;
+    width: 320px;
+    min-height: 180px;
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* this is for carousel css */
+.faq-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.faq-carousel {
+    overflow: hidden;
+    width: 100%;
+}
+
+.faq-carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+}
+
+/* Show approximately 3 cards at a time */
+.carousel-card {
+    flex: 0 0 calc((100% - 40px) / 3);
+    max-width: calc((100% - 40px) / 3);
+    box-sizing: border-box;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 24px;
+    background: #fff;
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}

@@ -1,6 +1,6 @@
 package com.bhaska.newsportal.core.schedulers;
 
-import com.bhaska.newsportal.core.service.NPUtilService;
+import com.bhaska.newsportal.core.service.impl.NPUtilService;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
@@ -34,7 +34,7 @@ import java.net.http.HttpResponse;
 )
 public class ProductSchedulerJobConsumer implements JobConsumer {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductSchedulerJobConsumer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProductSchedulerJobConsumer.class);
 
     private final HttpClient client = HttpClient.newHttpClient();
 
@@ -48,7 +48,7 @@ public class ProductSchedulerJobConsumer implements JobConsumer {
     public JobResult process(Job job) {
 
         String apiUrl = job.getProperty("apiUrl", String.class);
-        log.info("API URL = {}", apiUrl);
+        LOG.info("API URL = {}", apiUrl);
 
         getResponse(apiUrl);
 
@@ -75,7 +75,6 @@ public class ProductSchedulerJobConsumer implements JobConsumer {
             JsonNode rootArray = mapper.readTree(responseBody);
 
             ResourceResolver resolver = npUtilService.getResourceResolver();
-            log.info("==================================="+resolver);
             PageManager pageManager = resolver.adaptTo(PageManager.class);
 
             for (JsonNode node : rootArray) {
@@ -86,11 +85,6 @@ public class ProductSchedulerJobConsumer implements JobConsumer {
 
                 String pagePath = PARENT_PATH + "/" + pageName;
 
-                log.info("pageName = {}", pageName);
-                log.info("pageTitle = {}", pageTitle);
-                log.info("pageBody = {}", pageBody);
-                log.info("pagePath = {}", pagePath);
-
                 if (resolver.getResource(pagePath) == null) {
 
                     Page page = pageManager.create(
@@ -100,7 +94,7 @@ public class ProductSchedulerJobConsumer implements JobConsumer {
                             pageTitle
                     );
 
-                    log.debug("Page created: {}", page.getPath());
+                    LOG.debug("Page created: {}", page.getPath());
 
                     Resource contentResource = page.getContentResource();
                     ModifiableValueMap properties = contentResource.adaptTo(ModifiableValueMap.class);
@@ -109,15 +103,14 @@ public class ProductSchedulerJobConsumer implements JobConsumer {
 
                 } else {
 
-                    log.debug("Page already exists: {}", pagePath);
+                    LOG.debug("Page already exists: {}", pagePath);
                 }
             }
-
             resolver.commit();
 
         } catch (Exception e) {
 
-            log.error("Error creating pages {}", e.getMessage(), e);
+            LOG.error("Error creating pages {}", e.getMessage());
         }
     }
 }

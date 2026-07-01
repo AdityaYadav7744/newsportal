@@ -18,7 +18,7 @@ import java.util.Map;
                 ResourceChangeListener.CHANGES+"=ADDED"
         }
 )
-public class DamMetaDataProcessingListner implements ResourceChangeListener {
+public class DamMetaDataProcessingJobManagerListner implements ResourceChangeListener {
 
     @Reference
     JobManager jobManager;
@@ -29,8 +29,7 @@ public class DamMetaDataProcessingListner implements ResourceChangeListener {
             map.put("assetPath",change.getPath());
             map.put("currentTime", LocalDateTime.now().toString());
             map.put("triggeredBy","system");
-            jobManager.addJob("dam/")
-
+            jobManager.addJob("dam/metadata/processing",map);
         }
 
     }

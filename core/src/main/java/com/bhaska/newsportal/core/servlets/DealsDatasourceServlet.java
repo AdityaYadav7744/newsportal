@@ -7,82 +7,107 @@ import com.day.cq.wcm.api.Page;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.*;
-import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.api.wrappers.ValueMapDecorator;
 import org.osgi.service.component.annotations.Component;
-
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.*;
 
-@Component(
+/*@Component(
         service = Servlet.class,
         property = {
                 "sling.servlet.resourceTypes=newsportal/datasource/deals",
                 "sling.servlet.methods=GET"
         }
-)
-public class PrivateDealsDatasourceServlet extends SlingAllMethodsServlet {
-
-    private static final String DEALS_ROOT = "/content/newsportal/deals";
+)*/
+public class DealsDatasourceServlet extends SlingSafeMethodsServlet {
+        private static final String DEALS_ROOT ="/content/newsportal/deals";
 
     @Override
-    protected void doGet(
-            SlingHttpServletRequest request,
-            SlingHttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
 
-        ResourceResolver resolver =
-                request.getResourceResolver();
-        
+        ResourceResolver resolver = request.getResourceResolver();
 
         List<Resource> options = new ArrayList<>();
+        Resource dataResource = request.getResource().getChild("datasource");
+        String path = request.getResource().getPath();
+        Resource dealsRoot = resolver.getResource(DEALS_ROOT);
+        if (dealsRoot != null) {
 
-        Resource dealsRoot =
-                resolver.getResource(DEALS_ROOT);
+            Iterator<Resource> children =
+                    dealsRoot.listChildren();
 
-        if (dealsRoot == null) {
-            request.setAttribute(
-                    DataSource.class.getName(),
-                    new SimpleDataSource(options.iterator()));
-            return;
+            while (children.hasNext()) {
+
+                Resource child =
+                        children.next();
+
+                Page dealPage =
+                        child.adaptTo(Page.class);
+
+                if (dealPage == null) {
+                    continue;
+                }
+
+                Resource dealsComponent =
+                        dealPage.getContentResource()
+                                .getChild("root/container/deals");
+
+                if (dealsComponent == null) {
+                    continue;
+                }
+                boolean privateDeal =
+                        dealsComponent.getValueMap()
+                                .get("privateDeals", false);
+
+                if (path.contains("/privateDeals/")&& privateDeal) {
+
+                    addOption(
+                            options,
+                            resolver,
+                            dealPage);
+
+                } else if ( path.contains("/publicDeals/")
+                        && !privateDeal) {
+
+                    addOption(
+                            options,
+                            resolver,
+                            dealPage);
+                }
+            }
         }
 
-        Iterator<Resource> children = dealsRoot.listChildren();
-
-        while (children.hasNext()) {
-
-            Resource child = children.next();
-            Page dealPage = child.adaptTo(Page.class);
-
-            if (dealPage == null) {
-                continue;
-            }
-
-            Resource dealsComponent = dealPage.getContentResource().getChild("root/container/deals");
-            if (dealsComponent == null) {
-                continue;
-            }
-            boolean privateDeal = dealsComponent.getValueMap().get("privateDeals", false);
-
-
-            if (privateDeal) {
-                Map<String, Object> map = new HashMap<>();
-                map.put("text", dealPage.getTitle());
-                map.put("value", dealPage.getPath());
-                ValueMap vm = new ValueMapDecorator(map);
-                options.add(  new ValueMapResource(
-                                resolver,
-                                new ResourceMetadata(),
-                                "nt:unstructured",
-                                vm));
-            }
-        }
-        DataSource ds = new SimpleDataSource(options.iterator());
+        DataSource ds =
+                new SimpleDataSource(
+                        options.iterator());
 
         request.setAttribute(
                 DataSource.class.getName(),
                 ds);
+    }
+
+    private void addOption(
+            List<Resource> options,
+            ResourceResolver resolver,
+            Page dealPage) {
+
+        Map<String, Object> map =
+                new HashMap<>();
+
+        map.put("text", dealPage.getTitle());
+
+        map.put("value",dealPage.getPath());
+
+        ValueMap vm = new ValueMapDecorator(map);
+
+        options.add(
+                new ValueMapResource(
+                        resolver,
+                        new ResourceMetadata(),
+                        "nt:unstructured",
+                        vm));
     }
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class CardDetailsModel  {
+public class DealsTwoTabModel {
 
     @SlingObject
     private ResourceResolver resourceResolver;
@@ -23,49 +23,55 @@ public class CardDetailsModel  {
 
     @ValueMapValue
     private List<String> privateDeals;
+    private String cardLink;
+    private List<DealCardDetail> publicDealCards = new ArrayList<>();
+    private List<DealCardDetail> privateDealCards = new ArrayList<>();
 
-    private List<DealCard> publicDealCards = new ArrayList<>();
-    private List<DealCard> privateDealCards = new ArrayList<>();
+    private static final String LIVE_ROOT = "/content/newsportal/us/en/deals";
 
     @PostConstruct
     protected void init() {
-        populateDealCards(publicDeals, publicDealCards);
-        populateDealCards(privateDeals, privateDealCards);
+        mapIdsToLiveContent(publicDeals, publicDealCards);
+        mapIdsToLiveContent(privateDeals, privateDealCards);
     }
 
-    private void populateDealCards(List<String> dealPaths, List<DealCard> targetList) {
-        if (dealPaths == null) return;
+    // ... Inside DealsTwoTabModel.java ...
 
-        for (String path : dealPaths) {
-            String componentPath = path + "/jcr:content/root/container/deals_twotab_compone";
+    private void mapIdsToLiveContent(List<String> selectedPaths, List<DealCardDetail> finalCardList) {
+        if (selectedPaths == null) {
+            return;
+        }
 
-            Resource dealComponentResource = resourceResolver.getResource(componentPath);
-            if (dealComponentResource != null) {
-                ValueMap properties = dealComponentResource.getValueMap();
+        for (String configPath : selectedPaths) {
+            String pageId = configPath.substring(configPath.lastIndexOf("/") + 1);
 
-                DealCard card = new DealCard();
-                card.setTitle(properties.get("cardTitle", String.class));
-                card.setDescription(properties.get("cardDescription", String.class));
-                card.setImagePath(properties.get("cardImageReference", String.class));
+            if ("golden".equals(pageId)) {
+                pageId = "golde";
+            }
 
-                targetList.add(card);
+            String liveComponentPath = LIVE_ROOT + "/" + pageId + "/jcr:content/root/container/container/deals_cards";
+
+            Resource cardResource = resourceResolver.getResource(liveComponentPath);
+            if (cardResource != null) {
+                ValueMap properties = cardResource.getValueMap();
+
+                DealCardDetail card = new DealCardDetail();
+                card.setCardTitle(properties.get("cardTitle", String.class));
+                card.setCardDescription(properties.get("cardDescription", String.class));
+                card.setCardImage(properties.get("cardImageReference", String.class));
+                card.setCardLink(LIVE_ROOT + "/" + pageId + ".html");
+                finalCardList.add(card);
             }
         }
     }
 
-    public List<DealCard> getPublicDealCards() { return publicDealCards; }
-    public List<DealCard> getPrivateDealCards() { return privateDealCards; }
+    public void setCardLink(String cardLink) { this.cardLink = cardLink; }
+    public String getCardLink() { return cardLink; }
+    public List<DealCardDetail> getPublicDealCards() {
+        return publicDealCards;
+    }
 
-    public static class DealCard {
-        private String title;
-        private String description;
-        private String imagePath;
-
-        public String getTitle() { return title; }
-        public void setTitle(String title) { this.title = title; }
-        public String getDescription() { return description; }
-        public void setDescription(String description) { this.description = description; }
-        public String getImagePath() { return imagePath; }
-        public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    public List<DealCardDetail> getPrivateDealCards() {
+        return privateDealCards;
     }
 }

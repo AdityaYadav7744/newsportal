@@ -1,0 +1,9 @@
+{
+  "dealCard": {
+    "selectedDeal": "Premium",
+    "cardTitle": "Summer Offer",
+    "cardDescription": "Get flat 50% off on all products.",
+    "cardImageReference": "/content/dam/newsportal/summer-offer.png",
+    "cardImageName": "summer-offer.png"
+  }
+}

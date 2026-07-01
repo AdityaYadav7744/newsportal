@@ -1,0 +1,8 @@
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background: #0073e6;
+    color: #fff;
+    border-radius: 5px;
+}

@@ -1,0 +1,8 @@
+<div data-sly-use.backButton="com.bhaska.newsportal.core.models.FaqButtonModel"></div>
+<div data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"></div>
+<sly data-sly-call="${clientlib.css @ categories='faq.clientlib'}"/>
+
+
+<a href="${backButton.path}" class="back-btn">
+    ← Back
+</a>

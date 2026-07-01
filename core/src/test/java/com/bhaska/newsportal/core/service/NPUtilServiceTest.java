@@ -1,5 +1,6 @@
 package com.bhaska.newsportal.core.service;
 
+import com.bhaska.newsportal.core.service.impl.NPUtilService;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;

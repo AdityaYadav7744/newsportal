@@ -1,4 +1,7 @@
 package com.bhaska.newsportal.core.service;
 
-public class BlogMigrationService {
+import java.util.Set;
+
+public interface BlogMigrationService {
+    public void blogMigrationSerive(Set<String> url);
 }

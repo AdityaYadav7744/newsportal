@@ -1,4 +1,4 @@
-package com.bhaska.newsportal.core.service;
+package com.bhaska.newsportal.core.service.impl;
 
 import org.apache.commons.collections4.map.HashedMap;
 import org.apache.sling.api.resource.LoginException;
