@@ -59,9 +59,7 @@ public class ApiServiceImpl implements ApiService {
             while ((line = reader.readLine()) != null) {
                 response.append(line);
             }
-
             reader.close();
-
             log.info("API Response : {}", response.toString());
 
         } catch (Exception e) {
