@@ -7,7 +7,6 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.osgi.service.component.annotations.Component;
-
 import javax.jcr.query.Query;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;

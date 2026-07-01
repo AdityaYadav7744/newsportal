@@ -1,0 +1,75 @@
+<sly data-sly-use.deals="com.bhaska.newsportal.core.models.DealsTwoTabModel"/>
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" />
+<sly data-sly-call="${clientlib.all @ categories='faq.clientlib'}" />
+
+
+<div class="deals-wrapper">
+
+  
+    <div class="deal-tabs">
+        <button class="tab-btn active" data-tab="public-tab">
+            Public Deals
+        </button>
+
+        <button class="tab-btn" data-tab="private-tab">
+            Private Deals
+        </button>
+    </div>
+
+    <div id="public-tab" class="deals-section active-tab">
+
+        <div class="deals-cards" data-sly-list.item="${deals.publicDealCards}">
+
+            <div class="deal-card">
+
+                <div class="deal-image">
+                    <img src="${item.cardImage}" alt="${item.cardTitle}" />
+                </div>
+
+                <div class="deal-content">
+                    <h3>${item.cardTitle}</h3>
+
+                    <p>${item.cardDescription}</p>
+
+                    <a data-sly-test="${item.cardLink}"
+                       href="${item.cardLink}"
+                       class="deal-link">
+                        View Deal
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="private-tab" class="deals-section">
+
+        <div class="deals-cards" data-sly-list.item="${deals.privateDealCards}">
+
+            <div class="deal-card">
+
+                <div class="deal-image">
+                    <img src="${item.cardImage}" alt="${item.cardTitle}" />
+                </div>
+
+                <div class="deal-content">
+                    <h3>${item.cardTitle}</h3>
+
+                    <p>${item.cardDescription}</p>
+
+                    <a data-sly-test="${item.cardLink}"
+                       href="${item.cardLink}"
+                       class="deal-link">
+                        View Deal
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

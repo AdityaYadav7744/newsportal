@@ -1,0 +1,43 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+<sly data-sly-call="${clientlib.all @ categories='carousel.v2'}"/>
+<sly data-sly-use.model="com.bhaska.newsportal.core.models.CarouselModelV2"/>
+
+<div class="carousel-v2 ${currentStyle.cssClassNames}">
+    <div class="carousel-wrapper">
+        <sly data-sly-list.item="${model.carouselItems}">
+            <div class="carousel-item">
+                <sly data-sly-test="${item.mediaType == 'image'}">
+                    <div class="carousel-media">
+                        <img src="${item.image}" alt="${item.title}">
+                    </div>
+                </sly>
+                <sly data-sly-test="${item.mediaType == 'video'}">
+                    <div class="carousel-media">
+                        <video  muted
+                               playsinline
+                            autoplay
+                               loop
+                               controlsList="nofullscreen nodownload noremoteplayback"
+                               disablePictureInPicture>
+                            <source src="${item.videoPath}" type="video/mp4">
+                        </video>
+                    </div>
+                </sly>
+                <div class="carousel-content">
+                    <h2>${item.title}</h2>
+                    <a href="${item.buttonLink}" class="carousel-btn">
+                        ${item.buttonText}
+                    </a>
+                </div>
+
+            </div>
+
+        </sly>
+
+    </div>
+
+    <button class="carousel-prev">&#10094;</button>
+    <button class="carousel-next">&#10095;</button>
+    <div class="carousel-dots"></div>
+
+</div>

@@ -1,0 +1,15 @@
+<div data-sly-use.model="com.bhaska.newsportal.core.models.MigrationModel">
+ <h1>Migration Component Loaded</h1>
+    <h1>${model.title}</h1>
+
+    <p>${model.description}</p>
+
+    <img data-sly-test="${model.image}"
+         src="${model.image}"
+         alt="${model.title}" />
+
+    <div>
+        ${model.bodyHtml @ context='html'}
+    </div>
+
+</div>

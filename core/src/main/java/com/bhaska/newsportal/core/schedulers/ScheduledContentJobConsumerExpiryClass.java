@@ -1,6 +1,6 @@
 package com.bhaska.newsportal.core.schedulers;
 
-import com.bhaska.newsportal.core.service.NPUtilService;
+import com.bhaska.newsportal.core.service.impl.NPUtilService;
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.Replicator;
 import com.day.cq.search.*;

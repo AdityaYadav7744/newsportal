@@ -3,4 +3,5 @@
     <filter root="/apps/newsportal/clientlibs"/>
     <filter root="/apps/newsportal/components"/>
     <filter root="/apps/newsportal/i18n"/>
+    
 </workspaceFilter>

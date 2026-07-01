@@ -1,0 +1,33 @@
+{
+  "product": {
+    "productTitle": "Samsung Galaxy S25",
+    "productExpiry": "2099-12-31",
+    "productprice": 85000,
+    "productImage": "/content/dam/newsportal/mobile.jpg",
+    "productColor": "Black",
+    "productTag": "Premium"
+  },
+  "expiredProduct": {
+    "productTitle": "Old Phone",
+    "productExpiry": "2020-01-01",
+    "productprice": 15000,
+    "productImage": "/content/dam/newsportal/old.jpg",
+    "productColor": "Blue",
+    "productTag": "Sale"
+  },
+  "invalidDate": {
+    "productTitle": "Invalid Date Product",
+    "productExpiry": "abc",
+    "productprice": 1000,
+    "productImage": "/content/dam/newsportal/test.jpg",
+    "productColor": "Red",
+    "productTag": "Offer"
+  },
+  "noExpiry": {
+    "productTitle": "No Expiry Product",
+    "productprice": 500,
+    "productImage": "/content/dam/newsportal/noexpiry.jpg",
+    "productColor": "White",
+    "productTag": "New"
+  }
+}

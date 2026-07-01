@@ -1,0 +1,33 @@
+<div data-sly-use.model="com.bhaska.newsportal.core.models.FaqAccordionModel"></div>
+<div data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"></div>
+<sly data-sly-call="${clientlib.all @ categories='faq.clientlib'}"/>
+
+
+<h1 class="faq-heading">This is FAQ Accordion</h1>
+ <div class="accordion-container"
+     data-sly-list.item="${model.accordionItems}">
+
+    <div class="accordion-item">
+
+        <div class="accordion-header">
+
+            <div class="accordion-left">
+
+                <div class="accordion-image">
+                    <img src="${item.image}" alt="${item.title}">
+                </div>
+                <div class="accordion-title">
+                    ${item.title}
+                </div>
+            </div>
+            <div class="accordion-icon">+</div>
+        </div>
+        <div class="accordion-content">
+            <div class="accordion-description">
+                ${item.description}
+            </div>
+        </div>
+
+    </div>
+
+</div>

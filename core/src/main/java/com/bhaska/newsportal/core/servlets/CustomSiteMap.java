@@ -2,16 +2,12 @@ package com.bhaska.newsportal.core.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.Servlet;
-
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.*;
-
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.service.component.annotations.Component;
-
 import com.day.cq.replication.ReplicationStatus;
 
 @Component(service = Servlet.class,
@@ -35,37 +31,25 @@ public class CustomSiteMap extends SlingSafeMethodsServlet {
 
         ResourceResolver resolver = request.getResourceResolver();
         Resource root = resolver.getResource("/content/newsportal/us/en");
-
         if (root != null) {
             traverse(root, writer);
         }
-
         writer.println("</urlset>");
     }
 
     private void traverse(Resource resource, PrintWriter writer) {
 
         for (Resource child : resource.getChildren()) {
-
-            // Check if node is a page
             if ("cq:Page".equals(child.getValueMap().get("jcr:primaryType", ""))) {
-
                 Resource content = child.getChild("jcr:content");
-
                 if (content != null) {
-
-                    // ✅ ONLY CONDITION: Page must be published
                     ReplicationStatus repStatus = content.adaptTo(ReplicationStatus.class);
-
                     if (repStatus != null && repStatus.isActivated()) {
-
                         writer.println("<url>");
                         writer.println("<loc>http://localhost:4502" + child.getPath() + ".html</loc>");
                         writer.println("</url>");
                     }
                 }
-
-                // 🔁 recursion
                 traverse(child, writer);
             }
         }

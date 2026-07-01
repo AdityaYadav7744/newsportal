@@ -1,0 +1,80 @@
+<div data-sly-use.model="com.bhaska.newsportal.core.models.FaqModel"></div>
+
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+<sly data-sly-call="${clientlib.css @ categories='site.clientlibs'}"/>
+<sly data-sly-call="${clientlib.js @ categories='site.clientlibs'}"/>
+
+<div class="faq-cards-container"
+     data-sly-list.card="${model.cards}">
+    <sly data-sly-test="${!model.showAsCarousel}">
+    <sly data-sly-test="${cardList.count <= model.cardCount}">
+        <div class="faq-card"
+             data-title="${card.cardTitle}"
+             data-description="${card.fullDescription}">
+            <h4>${card.cardTitle}</h4>
+            <img src="${card.cardImage}" alt="${card.cardTitle}" />
+            <p>${card.shortDescription}</p>
+            <a href="${card.ctaLink}"
+               class="faq-btn"
+               onclick="event.stopPropagation();">
+                ${card.ctaText}
+            </a>
+        </div>
+    </sly>
+    </sly>
+</div>
+//carosel implementation
+<sly data-sly-test="${model.showAsCarousel}">
+   <div class="faq-carousel-wrapper">
+
+    <button class="carousel-btn prev-btn">&#10094;</button>
+
+    <div class="faq-carousel">
+        <div class="faq-carousel-track"
+             data-sly-list.card="${model.cards}">
+
+            <sly data-sly-test="${cardList.count <= model.cardCount}">
+                <div class="faq-card carousel-card"
+                     data-title="${card.cardTitle}"
+                     data-description="${card.fullDescription}">
+
+                    <h4>${card.cardTitle}</h4>
+
+                    <img src="${card.cardImage}" alt="${card.cardTitle}" />
+
+                    <p>${card.shortDescription}</p>
+
+                    <a href="${card.ctaLink}"
+                       class="faq-btn"
+                       onclick="event.stopPropagation();">
+                        ${card.ctaText}
+                    </a>
+
+                </div>
+            </sly>
+
+        </div>
+    </div>
+
+    <button class="carousel-btn next-btn">&#10095;</button>
+
+</div>
+</sly>
+
+
+
+<div id="faq-popup" class="faq-popup">
+
+    <div class="faq-popup-content">
+
+        <button id="faq-close-btn" class="faq-close-btn">
+            ✕
+        </button>
+
+        <h2 id="faq-popup-title"></h2>
+
+        <p id="faq-popup-description"></p>
+
+    </div>
+
+</div>

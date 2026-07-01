@@ -88,18 +88,7 @@ class ProductWorkflowTest {
         verify(replicator).replicate(session, ReplicationActionType.ACTIVATE, "/content/test");
     }
 
-    // ================= PAYLOAD NULL =================
-//    @Test
-//    void testExecute_PayloadNull() throws Exception {
-//
-//        when(workflowData.getPayload()).thenReturn(null);
-//
-//        workflow.execute(workItem, workflowSession, metaDataMap);
-//
-//        verifyNoInteractions(replicator);
-//    }
 
-    // ================= RESOLVER NULL =================
     @Test
     void testExecute_ResolverNull() throws Exception {
 
@@ -110,7 +99,7 @@ class ProductWorkflowTest {
         verifyNoInteractions(replicator);
     }
 
-    // ================= RESOURCE NULL =================
+
     @Test
     void testExecute_ResourceNull() {
 
@@ -120,7 +109,6 @@ class ProductWorkflowTest {
                 workflow.execute(workItem, workflowSession, metaDataMap));
     }
 
-    // ================= CONTENT FRAGMENT NULL =================
     @Test
     void testExecute_ContentFragmentNull() {
 

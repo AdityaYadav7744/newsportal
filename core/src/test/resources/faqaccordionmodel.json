@@ -1,0 +1,16 @@
+{
+  "faq": {
+    "accordionItems": {
+      "item1": {
+        "question": "What is AEM?",
+        "answer": "Adobe Experience Manager"
+      },
+      "item2": {
+        "question": "What is Sling?",
+        "answer": "Apache Sling Framework"
+      }
+    }
+  },
+  "emptyFaq": {
+  }
+}

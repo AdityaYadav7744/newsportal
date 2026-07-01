@@ -1,7 +1,0 @@
-
-{
-  "scripts":[
-    "create service user npservice",
-    "set ACL for npservice\r\nallow jcr:all on /content/newsportal\r\nallow jcr:read on /\r\nend"
-  ]
-}

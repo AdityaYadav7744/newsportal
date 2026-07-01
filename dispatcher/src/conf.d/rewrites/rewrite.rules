@@ -7,6 +7,18 @@
 
 Include conf.d/rewrites/default_rewrite.rules
 
+RewriteRule ^/?$ /content/${CONTENT_FOLDER_NAME}/us/en.html [PT,L]
+
+# 2. Sub-folder rule (Handles deep pages like /deals/golde or /deals/golde.html)
+# FIX: Skip this rule if the user explicitly typed out the full /content/ path
+RewriteCond %{REQUEST_URI} !^/content
+RewriteRule ^/deals/([^.]+?)(\.html)?$ /content/${CONTENT_FOLDER_NAME}/us/en/deals/$1.html [PT,L]
+
+# 3. Main level rule (Handles top pages like /deals or /about)
+# FIX: Skip this rule if the user explicitly typed out the full /content/ path
+RewriteCond %{REQUEST_URI} !^/content
+RewriteRule ^/([^.]+?)(\.html)?$ /content/${CONTENT_FOLDER_NAME}/us/en/$1.html [PT,L]
+x
 # rewrite for root redirect
 RewriteRule ^/?$ /content/${CONTENT_FOLDER_NAME}/us/en.html [PT,L]
 

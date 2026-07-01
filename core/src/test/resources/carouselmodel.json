@@ -1,0 +1,16 @@
+{
+  "carousel": {
+    "carouselItems": {
+      "item1": {
+        "title": "First Slide",
+        "image": "/content/dam/newsportal/image1.jpg"
+      },
+      "item2": {
+        "title": "Second Slide",
+        "image": "/content/dam/newsportal/image2.jpg"
+      }
+    }
+  },
+  "emptyCarousel": {
+  }
+}

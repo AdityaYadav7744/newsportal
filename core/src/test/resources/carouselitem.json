@@ -1,0 +1,10 @@
+{
+  "item": {
+    "image": "/content/dam/newsportal/banner1.jpg",
+    "title": "Welcome Banner",
+    "buttonText": "Read More",
+    "buttonLink": "/content/newsportal/home",
+    "mediaType": "image",
+    "videoPath": "/content/dam/newsportal/video.mp4"
+  }
+}

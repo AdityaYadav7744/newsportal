@@ -1,6 +1,6 @@
 package com.bhaska.newsportal.core.schedulers;
 
-import com.bhaska.newsportal.core.service.NPUtilService;
+import com.bhaska.newsportal.core.service.impl.NPUtilService;
 import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,6 @@ class ProductSchedulerJobConsumerTest {
     @InjectMocks
     ProductSchedulerJobConsumer consumer;
 
-    // ✅ 1. Test process method
     @Test
     void testProcessMethod() {
 
@@ -31,7 +30,6 @@ class ProductSchedulerJobConsumerTest {
 
         ProductSchedulerJobConsumer spyConsumer = Mockito.spy(consumer);
 
-        // avoid calling real API
         doNothing().when(spyConsumer).getResponse(anyString());
 
         JobConsumer.JobResult result = spyConsumer.process(job);
@@ -40,12 +38,10 @@ class ProductSchedulerJobConsumerTest {
         verify(spyConsumer).getResponse("http://test.com");
     }
 
-    // ✅ 2. Test getResponse method (no exception check)
     @Test
     void testGetResponse() {
 
-        // we are not mocking full AEM + HTTP here (keep simple)
-        // just check method runs without crashing
+
 
         assertDoesNotThrow(() -> {
             consumer.getResponse("https://jsonplaceholder.typicode.com/posts");

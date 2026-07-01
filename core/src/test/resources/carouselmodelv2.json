@@ -1,0 +1,24 @@
+{
+  "carousel": {
+    "carouselItems": {
+      "item1": {
+        "image": "/content/dam/newsportal/banner1.jpg",
+        "title": "First Banner",
+        "buttonText": "Read More",
+        "buttonLink": "/content/newsportal/home",
+        "mediaType": "image",
+        "videoPath": ""
+      },
+      "item2": {
+        "image": "/content/dam/newsportal/banner2.jpg",
+        "title": "Second Banner",
+        "buttonText": "Explore",
+        "buttonLink": "/content/newsportal/news",
+        "mediaType": "video",
+        "videoPath": "/content/dam/newsportal/video.mp4"
+      }
+    }
+  },
+  "emptyCarousel": {
+  }
+}

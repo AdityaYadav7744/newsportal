@@ -1,0 +1,15 @@
+<sly data-sly-use.dealModel="com.bhaska.newsportal.core.models.DealXfReaderMdel" />
+
+<div class="deal-card" data-sly-test="${dealModel.id}">
+
+    <div class="deal-image" data-sly-test="${dealModel.image}">
+        <img src="${dealModel.image}" alt="Deal Image" />
+    </div>
+    <div class="deal-content">
+        <h3>${dealModel.id}</h3>
+        <div class="deal-description">
+            ${dealModel.longDescription @ context='html'}
+        </div>
+    </div>
+
+</div>
