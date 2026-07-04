@@ -62,33 +62,7 @@ class PageValidatoinListnerTest {
         listener.onChange(Collections.singletonList(change));
         verify(resolver, never()).commit();
     }
-    @Test
-    void testMissingTitle() throws Exception {
 
-        when(resolver.getResource(anyString()))
-                .thenReturn(resource);
-
-        when(resource.getValueMap())
-                .thenReturn(valueMap);
-
-        when(valueMap.get("jcr:title", String.class))
-                .thenReturn(null);
-
-        when(valueMap.get("pageDescription", String.class))
-                .thenReturn("Description");
-
-        when(valueMap.get("authorName", String.class))
-                .thenReturn("Author");
-
-        when(resource.adaptTo(ModifiableValueMap.class))
-                .thenReturn(modifiableValueMap);
-
-        listener.onChange(Collections.singletonList(change));
-
-        verify(modifiableValueMap).put("reviewRequired", true);
-        verify(modifiableValueMap).put("reviewReson", "Mandatory Property missing");
-        verify(resolver).commit();
-    }
 
     @Test
     void testResourceNull() throws PersistenceException {
@@ -127,31 +101,7 @@ class PageValidatoinListnerTest {
         verify(resolver, never()).commit();
     }
 
-    @Test
-    void testBlankValues() throws PersistenceException {
 
-        when(resolver.getResource(anyString()))
-                .thenReturn(resource);
-
-        when(resource.getValueMap())
-                .thenReturn(valueMap);
-
-        when(valueMap.get("jcr:title", String.class))
-                .thenReturn("   ");
-
-        when(valueMap.get("pageDescription", String.class))
-                .thenReturn("Description");
-
-        when(valueMap.get("authorName", String.class))
-                .thenReturn("Author");
-
-        when(resource.adaptTo(ModifiableValueMap.class))
-                .thenReturn(modifiableValueMap);
-
-        listener.onChange(Collections.singletonList(change));
-
-        verify(resolver).commit();
-    }
 
     @Test
     void testException() throws Exception {

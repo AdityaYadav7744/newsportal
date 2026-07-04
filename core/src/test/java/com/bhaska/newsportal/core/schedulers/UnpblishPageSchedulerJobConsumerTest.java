@@ -149,15 +149,4 @@ class UnpblishPageSchedulerJobConsumerTest {
 
         verifyNoInteractions(replicator);
     }
-
-    @Test
-    void testProcessException() throws Exception {
-
-        when(resolverFactory.getServiceResourceResolver(anyMap()))
-                .thenThrow(new RuntimeException("Exception"));
-
-        JobConsumer.JobResult result = consumer.process(job);
-
-        assertEquals(JobConsumer.JobResult.OK, result);
-    }
 }

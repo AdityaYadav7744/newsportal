@@ -7,7 +7,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface DamMetaDataProcessingConfig {
 
     @AttributeDefinition(name = "Job Enable")
-    boolean jobEnable () default true;
+    boolean jobEnable () default false;
 
     @AttributeDefinition(name = "Allowed Dam Path")
     String path () default "/content/dam/newsportal";

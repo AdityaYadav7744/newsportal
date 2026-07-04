@@ -10,8 +10,8 @@ public @interface SiteMapConfiguration {
     String pagePath() default "/content/newsportal/us/en/home-page";
 
     @AttributeDefinition
-    String cronExp () default "*/30 * * * * ?";
+    String cronExp () default "30 * * * * ?";
 
     @AttributeDefinition
-    boolean status() default true;
+    boolean status() default false;
 }

@@ -15,12 +15,8 @@ import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
-
-
-
 @Model(adaptables  = {Resource.class},
-        adapters = ProductDetailsComponentImpl.class,
+        adapters = ProductDetails.class,
         resourceType = "/apps/newsportal/components/productdetailscomponent",
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
  )

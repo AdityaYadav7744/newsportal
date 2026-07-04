@@ -10,5 +10,5 @@ public @interface ArticleServiceComponent {
     public String articleAPI();
 
     @AttributeDefinition
-    public boolean activate();
+    public boolean activate() default false;
 }

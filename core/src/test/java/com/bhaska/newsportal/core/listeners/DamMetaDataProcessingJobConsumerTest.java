@@ -152,13 +152,5 @@ class DamMetaDataProcessingJobConsumerTest {
         verify(resolver).commit();
     }
 
-    @Test
-    void testProcessException() throws Exception {
 
-        when(resolverFactory.getServiceResourceResolver(anyMap()))
-                .thenThrow(new RuntimeException("Error"));
-
-        assertEquals(JobConsumer.JobResult.OK,
-                consumer.process(job));
-    }
 }

@@ -1,0 +1,34 @@
+<sly data-sly-use.model="com.bhaska.newsportal.core.models.SimPlansModel" />
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.all @ categories='sim.clintlibs'}"/>
+</sly>
+
+<div class="sim-plans-container">
+
+    <div class="sim-plan-card" data-sly-repeat.plan="${model.plans}">
+
+        <div class="sim-plan-header">
+            <h2>${plan.planName}</h2>
+        </div>
+
+        <div class="sim-plan-body">
+
+            <div class="plan-price">
+                <span>${plan.price}</span>
+            </div>
+
+            <div class="plan-validity">
+                <span>${plan.validityDays} Days</span>
+            </div>
+
+        </div>
+
+        <div class="sim-plan-footer">
+            <a class="view-more-btn"
+               href="${model.pagePath}.html?planId=${plan.uuid}">
+                View More
+            </a>
+        </div>
+    </div>
+
+</div>

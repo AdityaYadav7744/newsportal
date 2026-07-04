@@ -7,11 +7,11 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface UnpblishPageSchedulerConfig {
 
     @AttributeDefinition
-    String cron () default "1 * * * * ?";
+    String cron () default "50 * * * * ?";
 
     @AttributeDefinition
     String path () default "/content/newsportal";
 
     @AttributeDefinition
-    boolean status () default true;
+    boolean status () default false;
 }
