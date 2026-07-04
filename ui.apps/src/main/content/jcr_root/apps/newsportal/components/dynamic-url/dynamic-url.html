@@ -1,0 +1,17 @@
+<sly data-sly-use.model="com.bhaska.newsportal.core.models.DynamicURLModel" />
+<h1>Dynamic URL</h1>
+<div>
+    <a href="${model.pagePath}.${model.selector}.html">
+        Selector
+    </a>
+</div>
+<div>
+    <a href="${model.pagePath}.html/${model.suffix}">
+        Suffix
+    </a>
+</div>
+<div>
+    <a href="${model.pagePath}.html?headphone=${model.queryParam}">
+        Query Param
+    </a>
+</div>

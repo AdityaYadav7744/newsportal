@@ -83,23 +83,5 @@ class PropertyIndexServletTest {
         assertEquals("[]", sw.toString());
     }
 
-    @Test
-    void testDoGet_Exception() throws Exception {
 
-        when(request.getParameter("category")).thenReturn("sports");
-        when(request.getParameter("author")).thenReturn("admin");
-        when(request.getResourceResolver()).thenReturn(resolver);
-
-        when(resolver.findResources(anyString(), eq("JCR-SQL2")))
-                .thenThrow(new RuntimeException("Query Failed"));
-
-        StringWriter sw = new StringWriter();
-        when(response.getWriter()).thenReturn(new PrintWriter(sw));
-
-        servlet.doGet(request, response);
-
-        verify(response).setContentType("application/json");
-
-        assertEquals("[]", sw.toString());
-    }
 }

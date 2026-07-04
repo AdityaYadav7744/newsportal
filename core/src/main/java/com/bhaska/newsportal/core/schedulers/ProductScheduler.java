@@ -44,7 +44,7 @@ public class ProductScheduler implements Runnable {
 
         this.apiUrl = config.apiUrl();
 
-        if (config.enable()) {
+        if (false) {
 
             ScheduleOptions scheduleOptions = scheduler.EXPR(config.cronExpression());
             scheduleOptions.name(config.schedulerName());
